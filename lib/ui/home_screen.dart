@@ -210,7 +210,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
       ),
-      // onTap: () => GoTo.articleDetails(context, article, _person, _unlockVoting),
+      onTap: () => GoTo.articleScreen(context, article, _person, _unlockVoting),
     );
   }
 }
