@@ -1,4 +1,5 @@
 import 'package:emu_infodam/ui/auth_screen.dart';
+import 'package:emu_infodam/ui/create_article_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class App extends StatelessWidget {
       title: 'EMU Information Dam',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple), useMaterial3: false),
-      home: const AuthScreen(),
+      home: const CreateArticleScreen(),
     );
   }
 }
