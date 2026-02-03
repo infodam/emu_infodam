@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1099478903787",
+    "project_id": "info-dam",
+    "storage_bucket": "info-dam.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099478903787:android:89f95013e05ca2f193c7ae",
+        "android_client_info": {
+          "package_name": "com.example.emu_infodam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2El0o8GCSpAjvjKHmVI7BCFVg5eO2yc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
