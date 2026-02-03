@@ -1,3 +1,4 @@
+import 'package:emu_infodam/ui/auth_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,9 +13,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'EMU Information Dam',
-
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple), useMaterial3: false),
-      home: const Placeholder(),
+      home: const AuthScreen(),
     );
   }
 }
