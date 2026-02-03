@@ -5,8 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import '../../models/person.dart';
-import 'name_generator.dart';
-
+import 'alias_engine.dart';
 
 final authStateChangeProvider = StreamProvider<User?>((ref) {
   final authRepo = ref.read(authRepositoryProvider);
@@ -35,7 +34,7 @@ class AuthRepository {
   FutureEitherFailureOr<String> useWithoutAccount() async {
     try {
       final anonCredential = await _auth.signInAnonymously();
-      final newName = NameGenerator.name; 
+      final newName = AliasEngine.name;
       final newPerson = Person(uid: anonCredential.user!.uid, alias: newName);
       await _people.doc(newPerson.uid).set(newPerson.toMap());
       return right(newName);
@@ -53,7 +52,7 @@ class AuthRepository {
   FutureEitherFailureOr<String> signUp(String email, String password, bool wantsCommunication, {String? preference}) async {
     try {
       final userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      final newName = NameGenerator.name;
+      final newName = AliasEngine.name;
       final person = Person(uid: userCredential.user!.uid, email: email, alias: newName);
 
       await _people.doc(person.uid).set(person.toMap());

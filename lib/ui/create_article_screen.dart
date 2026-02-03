@@ -1,10 +1,10 @@
 import 'package:emu_infodam/features/articles/articles_controller.dart';
+import 'package:emu_infodam/features/auth/alias_engine.dart';
 import 'package:emu_infodam/ui/custom_widgets.dart';
 import 'package:emu_infodam/utility/show_messages.dart';
 import 'package:emu_infodam/utility/text_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 
 const String kDontPostUnless =
     "We are not looking for original thoughts. Pick something anyone would agree with, even if it's obvious! Maybe something simple is more important than we realize. If it turns out meh you can ask your peers for downvotes so it gets deleted quickly.";
@@ -13,7 +13,8 @@ const String kTypesOfPosts =
     "You can share a short statement or you can use that field as a title to share a link or additional content. Copy and pasting is recommended, our in-house-text-editor is still under construction.";
 
 class CreateArticleScreen extends ConsumerStatefulWidget {
-  const CreateArticleScreen({super.key});
+  final String username;
+  const CreateArticleScreen(this.username, {super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _CreateArticleScreenState();
@@ -29,6 +30,8 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
   int _pageIndex = 1;
   // '_returnIndex' allows for the content input to be skipped from titleOnly to page 3
   int _returnIndex = 1;
+  String? adjective;
+  String? noun;
 
   void _titleAquisition() {
     if (!isValidTextValue(_titleController)) {
@@ -56,9 +59,15 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
   }
 
   void _goToPage3(int returnIndex) {
+    //TODO STOP HERE WAIT FOR SECOND AFFIRMATION
     setState(() {
       _pageIndex = 3;
       _returnIndex = returnIndex;
+      if (noun == null) {
+        final dict = AliasEngine.splitWords(widget.username);
+        adjective = dict['adjective'];
+        noun = dict['noun'];
+      }
     });
   }
 
@@ -75,7 +84,6 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
   //The post creation takes place over 3 pages
   // The first has kDontPostUnless and kTypesOfPost and asks for a title.
   // the second is for content and a link
-
 
   @override
   Widget build(BuildContext context) {
@@ -224,6 +232,18 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
             ArticleStyles.titleText(validTextValueReturner(_titleController)),
             if (_hasLink) ArticleStyles.urlButton(validTextValueReturner(_urlController), context),
             if (_hasContent) ArticleStyles.contentText(validTextValueReturner(_contentController)),
+            Column(
+              children: [
+                Text("which part of your username are you contributing to this post?"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(onPressed: () {}, child: Text(adjective!)),
+                    ElevatedButton(onPressed: () {}, child: Text(noun!)),
+                  ],
+                ),
+              ],
+            ),
             ElevatedButton(onPressed: _submitPaperWork, child: const Text("Post!")),
             const SizedBox(height: 10),
           ],
@@ -240,3 +260,4 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
     _urlController.dispose();
   }
 }
+
