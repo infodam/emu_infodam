@@ -46,7 +46,7 @@ class _AppState extends ConsumerState<App> {
             data: (data) {
               if (data != null) {
                 _getData(data);
-                return const HomePage();
+                return const HomeScreen();
               }
 
               return const AuthScreen();

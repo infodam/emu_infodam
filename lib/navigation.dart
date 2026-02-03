@@ -1,5 +1,6 @@
 
 
+import 'package:emu_infodam/ui/create_article_screen.dart';
 import 'package:emu_infodam/ui/info_page.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +9,9 @@ class GoTo {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const InfoPage()));
   }
 
-  // static createPostScreen(BuildContext context) {
-  //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateArticleScreen()));
-  // }
+  static createPostScreen(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateArticleScreen("RiffRaff")));
+  }
 
   // static articleDetails(BuildContext context, Article article, Person person, Function? unlockVoting) {
   //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ArticleDetail(article, person))).then((value) {
