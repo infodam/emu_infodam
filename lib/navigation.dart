@@ -1,6 +1,7 @@
 import 'package:emu_infodam/models/article.dart';
 import 'package:emu_infodam/models/person.dart';
 import 'package:emu_infodam/ui/article_screen.dart';
+import 'package:emu_infodam/ui/colours_page.dart';
 import 'package:emu_infodam/ui/create_article_screen.dart';
 import 'package:emu_infodam/ui/info_page.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,7 @@ class GoTo {
     });
   }
 
-
-  // static chooseColorPage(BuildContext context) {
-  //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ColoursPage()));
-  // }
+  static chooseColorPage(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ColoursPage()));
+  }
 }

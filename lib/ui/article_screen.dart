@@ -1,3 +1,4 @@
+import 'package:emu_infodam/features/colour_changer.dart';
 import 'package:emu_infodam/features/comments/comments_controller.dart';
 import 'package:emu_infodam/features/comments/comments_repository.dart';
 import 'package:emu_infodam/models/article.dart';
@@ -9,8 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/comment.dart';
 import '../utility/show_messages.dart';
-
-const Color goodColor = Colors.green;
 
 class ArticleScreen extends ConsumerStatefulWidget {
   final Article article;
@@ -113,7 +112,8 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
       ),
     );
   }
-//TODO delete comments at zero
+
+  //TODO delete comments at zero
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -197,9 +197,6 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
   }
 
   Widget _commentTile(Comment comment) {
-    //     if(_likedCommentId==null){
-    // return _basicTile(comment, null);
-    //     }
     if (_likedCommentId == comment.commentId) {
       return _basicTile(comment, true);
     } else {
@@ -210,7 +207,7 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
   Widget _basicTile(Comment comment, bool isLiked) {
     return ListTile(
       trailing: widget.person.uid == comment.commentId ? Text('agreement: ${comment.scoreStr}') : null,
-      tileColor: isLiked ? goodColor : null,
+      tileColor: isLiked ? ref.watch(colorChangerProvider).goodColor.withAlpha(100) : null,
       title: Center(child: Text(comment.commentText)),
       subtitle: Center(child: Text(comment.authorAlias)),
       onTap: isLiked

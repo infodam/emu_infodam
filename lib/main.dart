@@ -1,5 +1,6 @@
 import 'package:emu_infodam/features/auth/auth_controller.dart';
 import 'package:emu_infodam/features/auth/auth_repository.dart';
+import 'package:emu_infodam/features/colour_changer.dart';
 import 'package:emu_infodam/ui/auth_screen.dart';
 import 'package:emu_infodam/ui/create_article_screen.dart';
 import 'package:emu_infodam/ui/home_screen.dart';
@@ -36,9 +37,9 @@ class _AppState extends ConsumerState<App> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Information Dam",
-      //TODO color choice
-      // theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: ref.watch(colorChangerProvider).goodColor), useMaterial3: false),
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green), useMaterial3: false),
+
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: ref.watch(colorChangerProvider).goodColor), useMaterial3: false),
+    
     
       home: ref
           .watch(authStateChangeProvider)

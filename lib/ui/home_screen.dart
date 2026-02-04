@@ -1,14 +1,12 @@
 import 'package:emu_infodam/features/articles/articles_controller.dart';
 import 'package:emu_infodam/features/auth/auth_controller.dart';
+import 'package:emu_infodam/features/colour_changer.dart';
 import 'package:emu_infodam/models/article.dart';
 import 'package:emu_infodam/models/person.dart';
 import 'package:emu_infodam/navigation.dart';
 import 'package:emu_infodam/utility/error_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-Color good = Colors.green;
-Color bad = Colors.yellow; 
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -46,7 +44,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   GoTo.infoScreen(context);
                 }
                 if (value == "color") {
-                  // GoTo.chooseColorPage(context);
+                  GoTo.chooseColorPage(context);
                 }
                 if (value == "out") {
                   ref.read(authControllerProvider.notifier).signOut(context);
@@ -140,6 +138,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Widget _votedCard(Article article, bool isLiked) {
+    final colorChanger = ref.watch(colorChangerProvider);
     return _basicCard(
       article,
       locked: false,
@@ -156,7 +155,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         },
         icon: const Icon(Icons.undo),
       ),
-      colour: isLiked ? good : bad, 
+      colour: isLiked ? colorChanger.goodColor.withAlpha(100) : colorChanger.badColor.withAlpha(100),
       // colour: isLiked ? colours.goodColor.withAlpha(80) : colours.badColor.withAlpha(80),
     );
   }
@@ -165,8 +164,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return _basicCard(
       isFlat: true,
       article,
-      colour: good,
-      // colour: colours.goodColor.withAlpha(40),
+      colour: ref.watch(colorChangerProvider).goodColor,
+
       locked: false,
       leading: Column(children: [const Text("agreement"), Text(article.scoreStr)]),
     );

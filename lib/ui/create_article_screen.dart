@@ -6,6 +6,7 @@ import 'package:emu_infodam/utility/text_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+//TODO implement dual authorship
 const String kDontPostUnless =
     "We are not looking for original thoughts. Pick something anyone would agree with, even if it's obvious! Maybe something simple is more important than we realize. If it turns out meh you can ask your peers for downvotes so it gets deleted quickly.";
 
@@ -81,9 +82,6 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
           url: _hasLink ? validTextValueReturner(_urlController) : null,
         );
   }
-  //The post creation takes place over 3 pages
-  // The first has kDontPostUnless and kTypesOfPost and asks for a title.
-  // the second is for content and a link
 
   @override
   Widget build(BuildContext context) {
@@ -232,18 +230,18 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
             ArticleStyles.titleText(validTextValueReturner(_titleController)),
             if (_hasLink) ArticleStyles.urlButton(validTextValueReturner(_urlController), context),
             if (_hasContent) ArticleStyles.contentText(validTextValueReturner(_contentController)),
-            Column(
-              children: [
-                Text("which part of your username are you contributing to this post?"),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(onPressed: () {}, child: Text(adjective!)),
-                    ElevatedButton(onPressed: () {}, child: Text(noun!)),
-                  ],
-                ),
-              ],
-            ),
+            // Column(
+            //   children: [
+            //     Text("which part of your username are you contributing to this post?"),
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //       children: [
+            //         ElevatedButton(onPressed: () {}, child: Text(adjective!)),
+            //         ElevatedButton(onPressed: () {}, child: Text(noun!)),
+            //       ],
+            //     ),
+            //   ],
+            // ),
             ElevatedButton(onPressed: _submitPaperWork, child: const Text("Post!")),
             const SizedBox(height: 10),
           ],
@@ -260,4 +258,3 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
     _urlController.dispose();
   }
 }
-
