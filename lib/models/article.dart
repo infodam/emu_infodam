@@ -9,6 +9,7 @@ class Article {
   final String? url;
   final List<String> agreement;
   final List<String> disagreement;
+  //TODO split alias
   final String authorAlias; 
   Article({
     required this.articleId,

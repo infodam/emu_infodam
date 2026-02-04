@@ -10,6 +10,8 @@ class AliasEngine {
     return newName;
   }
 
+  //TODO make this a provider instead
+
   static Map<String, String> splitWords(String alias) {
     final List<String> chars = alias.split('');
     for (int i = 2; i < chars.length; i++) {
@@ -37,7 +39,7 @@ class AliasEngine {
       "Holistic",
       "Indignant",
       "Jolly",
-      "Knarled",
+      "Kafkaesque",
       "Lopsided",
       "Mega",
       "Nuanced",
@@ -48,7 +50,7 @@ class AliasEngine {
       "Serpentine",
       "Titular",
       "Unnecessary",
-      "Vacated",
+      "Vocational",
       "Wayword",
       "Xenial",
       "Yielding",
@@ -91,12 +93,22 @@ class AliasEngine {
       "Honking",
       "Innocent",
       "Jaded",
-      //K?
+     //NO K?
       "Lingering",
       "Myopic",
       "Nonchalant",
-      "",
-
+      "Ominous",
+      "Personified",
+      "Quibbling",
+      "Raunchy",
+      "Sideways",
+      "Titanic",
+      "Uncouth",
+      "Verified",
+      "Westerly",
+      //
+      "Yowling",
+      //"Zapped",
     ];
   }
 
@@ -128,6 +140,7 @@ class AliasEngine {
       "Xylophone",
       "Yak",
       "Zenith",
+      //////////////////////////////////
       "Astronaut",
       "Bump",
       "Crutch",
@@ -138,7 +151,7 @@ class AliasEngine {
       "Hyperbole",
       "Illintent",
       "Junkyard",
-      "Kenesis",
+      "Kinesis",
       "Larynx",
       "Moonshine",
       "Nog",
@@ -147,13 +160,14 @@ class AliasEngine {
       "Quality",
       "Rascal",
       "Sunrise",
-      "Trapazoid",
+      "Trapezoid",
       "Upset",
-      "Vocation",
+      "Valor",
       "Werewolf",
       //no x
       "Yule",
       "Zebra",
+      ////////////////////////
       "Albatross",
       "Ballpit",
       "Cuckoo",
@@ -164,7 +178,22 @@ class AliasEngine {
       "Helipad",
       "Ink",
       "Jester",
-      "",
+      "Kangaroo",
+      "Luck",
+      "Mouse",
+      "Notebook",
+      "Oscillation",
+      "Platypus",
+      "Question",
+      "Ruckus",
+      "Seaweed",
+      "Tanktop",
+      "Uncle",
+      "Vacation",
+      "Wagon",
+      //NO Y
+      "Zeal",
+      ////////////////////
     ];
   }
 
