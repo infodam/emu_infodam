@@ -204,6 +204,7 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
                 keyboardType: TextInputType.multiline,
               ),
             ),
+          const SizedBox(height: 50),
         ],
       ),
     ),
@@ -224,27 +225,31 @@ class _CreateArticleScreenState extends ConsumerState<CreateArticleScreen> {
     body: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ArticleStyles.titleText(validTextValueReturner(_titleController)),
-            if (_hasLink) ArticleStyles.urlButton(validTextValueReturner(_urlController), context),
-            if (_hasContent) ArticleStyles.contentText(validTextValueReturner(_contentController)),
-            // Column(
-            //   children: [
-            //     Text("which part of your username are you contributing to this post?"),
-            //     Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //       children: [
-            //         ElevatedButton(onPressed: () {}, child: Text(adjective!)),
-            //         ElevatedButton(onPressed: () {}, child: Text(noun!)),
-            //       ],
-            //     ),
-            //   ],
-            // ),
-            ElevatedButton(onPressed: _submitPaperWork, child: const Text("Post!")),
-            const SizedBox(height: 10),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ArticleStyles.titleText(validTextValueReturner(_titleController)),
+              if (_hasLink) ArticleStyles.urlButton(validTextValueReturner(_urlController), context),
+              if (_hasContent) Expanded(child: SingleChildScrollView(child: ArticleStyles.contentText(validTextValueReturner(_contentController)))),
+
+              // Column(
+              //   children: [
+              //     Text("which part of your username are you contributing to this post?"),
+              //     Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //       children: [
+              //         ElevatedButton(onPressed: () {}, child: Text(adjective!)),
+              //         ElevatedButton(onPressed: () {}, child: Text(noun!)),
+              //       ],
+              //     ),
+              //   ],
+              // ),
+              ElevatedButton(onPressed: _submitPaperWork, child: const Text("Post!")),
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     ),

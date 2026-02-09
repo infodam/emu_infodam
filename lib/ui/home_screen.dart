@@ -88,12 +88,40 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           .watch(articleFeedProvider)
           .when(
             data: (listOfArticles) {
-              return ListView.builder(
-                itemCount: listOfArticles.length,
-                itemBuilder: (context, index) {
-                  final article = listOfArticles[index];
-                  return _articleCard(article);
-                },
+              return Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: listOfArticles.length,
+                      itemBuilder: (context, index) {
+                        final article = listOfArticles[index];
+                        return _articleCard(article);
+                      },
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      final List<String> ids = [];
+                      for (var article in listOfArticles) {
+                        for (var id in article.agreement) {
+                          if (!ids.contains(id)) {
+                            ids.add(id);
+                          }
+                        }
+                        for (var id in article.disagreement) {
+                          if (!ids.contains(id)) {
+                            ids.add(id);
+                          }
+                        }
+                      }
+                      showDialog(
+                        context: context,
+                        builder: (context) => SimpleDialog(children: [Center(child: Text("The number of interactees is ${ids.length}"))]),
+                      );
+                    },
+                    child: const Text("click to see how many people contributed to this set of information"),
+                  ),
+                ],
               );
             },
             error: (error, stackTrace) => ErrorPage(error.toString()),

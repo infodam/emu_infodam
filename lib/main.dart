@@ -2,7 +2,6 @@ import 'package:emu_infodam/features/auth/auth_controller.dart';
 import 'package:emu_infodam/features/auth/auth_repository.dart';
 import 'package:emu_infodam/features/colour_changer.dart';
 import 'package:emu_infodam/ui/auth_screen.dart';
-import 'package:emu_infodam/ui/create_article_screen.dart';
 import 'package:emu_infodam/ui/home_screen.dart';
 import 'package:emu_infodam/utility/firebase_tools/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';

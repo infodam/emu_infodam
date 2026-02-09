@@ -131,12 +131,16 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
         }
       },
       child: Scaffold(
-        floatingActionButton: _showingComments ? FloatingActionButton(onPressed: _showCommentDialog, child: const Icon(Icons.edit_square)) : null,
-        appBar: AppBar(centerTitle: true, title: Text(widget.article.authorAlias)),
+        // floatingActionButton: _showingComments ? FloatingActionButton(onPressed: _showCommentDialog, child: const Icon(Icons.edit_square)) : null,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(widget.article.authorAlias),
+          actions: _showingComments ? [GestureDetector(onTap: _showCommentDialog, child: const Text('comment'))] : null,
+        ),
         body: Column(
           children: [
             Flexible(
-              flex: _showingComments ? 3 : 8,
+              flex: _showingComments ? 6 : 8,
               child: Column(
                 children: [
                   ArticleStyles.titleText(widget.article.title),
@@ -150,7 +154,7 @@ class _ArticleScreenState extends ConsumerState<ArticleScreen> {
             ),
             !_showingComments
                 ? Flexible(
-                    flex: 3,
+                    flex: 2,
                     child: Center(
                       child: ElevatedButton(
                         onPressed: () {
